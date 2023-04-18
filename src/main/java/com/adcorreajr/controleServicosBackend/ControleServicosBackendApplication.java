@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class ControleServicosBackendApplication {
 
 
-	@Bean
+	/*@Bean
 	public CommandLineRunner run(@Autowired ClienteRepository clienteRepository){
 		return args -> {
 			Cliente cliente = Cliente.builder()
@@ -21,7 +21,7 @@ public class ControleServicosBackendApplication {
 					.build();
 			clienteRepository.save(cliente);
 		};
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(ControleServicosBackendApplication.class, args);
