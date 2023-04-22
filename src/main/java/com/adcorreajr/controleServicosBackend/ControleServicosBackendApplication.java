@@ -11,18 +11,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ControleServicosBackendApplication {
 
-
-	/*@Bean
-	public CommandLineRunner run(@Autowired ClienteRepository clienteRepository){
-		return args -> {
-			Cliente cliente = Cliente.builder()
-					.cpf("50886053072")
-					.nome("Antonio Junior")
-					.build();
-			clienteRepository.save(cliente);
-		};
-	}*/
-
 	public static void main(String[] args) {
 		SpringApplication.run(ControleServicosBackendApplication.class, args);
 	}
