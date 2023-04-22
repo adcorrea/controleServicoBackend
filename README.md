@@ -35,3 +35,16 @@ curl --location --request PUT 'http://localhost:8080/clientes/1' \
 "cpf": "74314706066"
 }'
 
+POST Serviço Prestado
+
+curl --location 'http://localhost:8080/api/servicos-prestados' \
+--header 'Content-Type: application/json' \
+--data '{
+"descricao" : "Manutencao Hack",
+"data" : "22/04/2023",
+"idCliente" : 1,
+"preco" : "1200,00"
+}'
+
+
+
