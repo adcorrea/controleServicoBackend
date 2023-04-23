@@ -49,10 +49,22 @@ public class ServicoPrestadoController {
         return servicoPrestadoRepository.save(servicoPrestado);
     }
 
+    @GetMapping({"","/"})
+    public List<ServicoPrestado> obterTodos(){
+        return servicoPrestadoRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ServicoPrestado obterPorId(@PathVariable Integer id){
+        return servicoPrestadoRepository.findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Serviço Prestado não encontrado."));
+    }
+
+
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletar(@RequestParam Integer id){
+    public void deletar(@PathVariable Integer id){
         servicoPrestadoRepository.findById(id)
                 .map(servicoPrestado -> {
                     servicoPrestadoRepository.delete(servicoPrestado);
@@ -65,16 +77,25 @@ public class ServicoPrestadoController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar(@RequestParam Integer id, @RequestBody ServicoPrestado servicoPrestadoAlterado){
+    public void atualizar(@PathVariable Integer id, @RequestBody ServicoPrestado servicoPrestadoAlterado){
         servicoPrestadoRepository.findById(id)
                 .map(servicoPrestado -> {
                     servicoPrestadoAlterado.setId(servicoPrestado.getId());
-                    servicoPrestadoRepository.delete(servicoPrestadoAlterado);
+                    servicoPrestadoRepository.save(servicoPrestadoAlterado);
                     return Void.TYPE;
                 })
                 .orElseThrow(()->
                         new ResponseStatusException(HttpStatus.NOT_FOUND, "Serviço Prestado não encontrado.")
                 );
+    }
+
+
+    @GetMapping({"/busca/",})
+    public List<ServicoPrestado> buscarNomeAndData(
+            @RequestParam(value = "nome", required = false, defaultValue = "") String nome,
+            @RequestParam(value = "mes", required = false) Integer mes
+    ){
+        return servicoPrestadoRepository.findByNomeClienteAndMes("%" + nome + "%", mes);
     }
 
 

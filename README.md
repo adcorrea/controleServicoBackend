@@ -46,5 +46,37 @@ curl --location 'http://localhost:8080/api/servicos-prestados' \
 "preco" : "1200,00"
 }'
 
+PUT Serviço Prestado
 
+curl --location --request PUT 'http://localhost:8080/api/servicos-prestados/1' \
+--header 'Content-Type: application/json' \
+--data '{
+"id": 1,
+"descricao": "Manutencao Hack",
+"cliente": {
+"id": 1,
+"nome": "Antonio Junior",
+"cpf": "50886053072",
+"dataCadastro": "22/04/2023"
+},
+"valor": 110.00,
+"data": "2023-04-22"
+}'
+
+GET all
+
+curl --location 'http://localhost:8080/api/servicos-prestados/'
+
+GET by id
+
+curl --location 'http://localhost:8080/api/servicos-prestados/1'
+
+
+GET busca
+
+curl --location 'http://localhost:8080/api/servicos-prestados/busca/?nome=Junior&mes=4'
+
+DELETE
+
+curl --location --request DELETE 'http://localhost:8080/api/servicos-prestados/1'
 
