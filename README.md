@@ -74,7 +74,7 @@ curl --location 'http://localhost:8080/api/servicos-prestados/1'
 
 GET busca
 
-curl --location 'http://localhost:8080/api/servicos-prestados/busca/?nome=Junior&mes=4'
+curl --location 'http://localhost:8080/api/servicos-prestados/busca?nome=junior&mes=4'
 
 DELETE
 

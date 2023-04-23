@@ -90,15 +90,12 @@ public class ServicoPrestadoController {
     }
 
 
-    @GetMapping({"/busca/",})
+    @GetMapping("/busca")
     public List<ServicoPrestado> buscarNomeAndData(
             @RequestParam(value = "nome", required = false, defaultValue = "") String nome,
             @RequestParam(value = "mes", required = false) Integer mes
     ){
         return servicoPrestadoRepository.findByNomeClienteAndMes("%" + nome + "%", mes);
     }
-
-
-
     
 }
