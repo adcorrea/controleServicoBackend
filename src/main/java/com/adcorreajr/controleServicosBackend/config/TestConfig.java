@@ -1,12 +1,17 @@
 package com.adcorreajr.controleServicosBackend.config;
 
 import com.adcorreajr.controleServicosBackend.model.entity.Cliente;
+import com.adcorreajr.controleServicosBackend.model.entity.ServicoPrestado;
 import com.adcorreajr.controleServicosBackend.model.repository.ClienteRepository;
+import com.adcorreajr.controleServicosBackend.model.repository.ServicoPrestadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Configuration
 @Profile("local")
@@ -14,6 +19,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     ClienteRepository clienteRepository;
+
+    @Autowired
+    ServicoPrestadoRepository servicoPrestadoRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -34,6 +42,15 @@ public class TestConfig implements CommandLineRunner {
                 Cliente.builder()
                         .cpf("34524273158")
                         .nome("Tio Patinhas")
+                        .build()
+        );
+
+        servicoPrestadoRepository.save(
+                ServicoPrestado.builder()
+                                .descricao("Manutenção de Impressora SAMSUNG")
+                        .cliente(cliente)
+                        .data(LocalDate.now())
+                        .valor(BigDecimal.valueOf(450))
                         .build()
         );
     }
