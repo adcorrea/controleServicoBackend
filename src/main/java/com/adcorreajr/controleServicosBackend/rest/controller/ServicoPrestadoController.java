@@ -11,13 +11,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/servicos-prestados")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 public class ServicoPrestadoController {
     
     @Autowired
@@ -32,7 +33,7 @@ public class ServicoPrestadoController {
 
     @PostMapping({"/",""})
     @ResponseStatus(HttpStatus.CREATED)
-    public ServicoPrestado salvar(@RequestBody ServicoPrestadoDTO servicoPrestadoDTO){
+    public ServicoPrestado salvar(@RequestBody @Valid ServicoPrestadoDTO servicoPrestadoDTO){
 
         Cliente cliente = clienteRepository
                 .findById(servicoPrestadoDTO.getIdCliente())
@@ -78,7 +79,7 @@ public class ServicoPrestadoController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atualizar(@PathVariable Integer id, @RequestBody ServicoPrestado servicoPrestadoAlterado){
+    public void atualizar(@PathVariable Integer id, @RequestBody @Valid ServicoPrestado servicoPrestadoAlterado){
         servicoPrestadoRepository.findById(id)
                 .map(servicoPrestado -> {
                     servicoPrestadoAlterado.setId(servicoPrestado.getId());
