@@ -80,3 +80,23 @@ DELETE
 
 curl --location --request DELETE 'http://localhost:8080/api/servicos-prestados/1'
 
+
+
+## Security
+
+POST Usuario
+
+curl --location 'http://localhost:8080/api/usuarios' \
+--header 'Content-Type: application/json' \
+--data '{
+"username": "adcorrea",
+"password": "1234"
+}'
+
+POST JWT
+
+curl --location 'http://localhost:8080/oauth/token' \
+--header 'Authorization: Basic bXktYW5ndWxhci1hcHA6QDMyMQ==' \
+--form 'username="admin"' \
+--form 'password="1234"' \
+--form 'grant_type="password"'

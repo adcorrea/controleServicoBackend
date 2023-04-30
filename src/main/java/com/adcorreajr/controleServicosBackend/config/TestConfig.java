@@ -2,8 +2,10 @@ package com.adcorreajr.controleServicosBackend.config;
 
 import com.adcorreajr.controleServicosBackend.model.entity.Cliente;
 import com.adcorreajr.controleServicosBackend.model.entity.ServicoPrestado;
+import com.adcorreajr.controleServicosBackend.model.entity.Usuario;
 import com.adcorreajr.controleServicosBackend.model.repository.ClienteRepository;
 import com.adcorreajr.controleServicosBackend.model.repository.ServicoPrestadoRepository;
+import com.adcorreajr.controleServicosBackend.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +24,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     ServicoPrestadoRepository servicoPrestadoRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -53,6 +58,15 @@ public class TestConfig implements CommandLineRunner {
                         .valor(BigDecimal.valueOf(450))
                         .build()
         );
+
+        usuarioRepository.save(
+                Usuario.builder()
+                        .username("admin")
+                        .password("1234")
+                        .build()
+        );
     }
+
+
 
 }
