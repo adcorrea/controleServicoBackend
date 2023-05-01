@@ -1,6 +1,7 @@
 package com.adcorreajr.controleServicosBackend.rest.controller;
 
 
+import com.adcorreajr.controleServicosBackend.exceptions.UsuarioCadastradoException;
 import com.adcorreajr.controleServicosBackend.rest.exception.ApiErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,12 @@ public class ApplicationControllerAdvice {
         HttpStatus codigoStatus = ex.getStatus();
         ApiErrors errors = new ApiErrors(messageError);
         return new ResponseEntity(errors, codigoStatus);
+    }
+
+
+    @ExceptionHandler(UsuarioCadastradoException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiErrors handleUsuarioCadastradoException(UsuarioCadastradoException ex){
+        return new ApiErrors(ex.getMessage());
     }
 }

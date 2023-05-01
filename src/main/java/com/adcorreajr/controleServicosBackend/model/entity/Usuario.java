@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -19,8 +20,10 @@ public class Usuario {
     private Integer id;
 
     @Column(unique = true)
+    @NotEmpty(message = "{campo.login.obritagorio}")
     private String username;
 
     @Column
+    @NotEmpty(message = "{campo.senha.obritagorio}")
     private String password;
 }
